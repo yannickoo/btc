@@ -11,9 +11,22 @@ var app = {
   },
   getRate: function($el) {
     $.getJSON('http://blockchain.info/ticker?cors=true', function(data) {
-      var rate = data.EUR.last;
+      var rate = data.EUR.last,
+          oldRate = parseFloat($el.text()),
+          suffix = '';
 
-      document.title = rate + ' ' + data.EUR.symbol;
+      if (rate > oldRate) {
+        suffix = '➚';
+      }
+      else if (rate < oldRate) {
+        suffix = '➘';
+      }
+
+      if (suffix) {
+        suffix = ' ' + suffix;
+      }
+
+      document.title = rate + ' ' + data.EUR.symbol + suffix;
       $el.text(rate);
     });
   }
