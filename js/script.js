@@ -10,7 +10,10 @@ var app = {
     }, 60 * 1000);
   },
   getRate: function($el) {
-    $.getJSON('http://blockchain.info/ticker?cors=true', function(data) {
+    $.ajax({
+      url: 'http://blockchain.info/ticker?cors=true',
+      crossDomain: true,
+    }).done(function(data) {
       var rate = data.EUR.last,
           oldRate = parseFloat($el.text()),
           suffix = '';
