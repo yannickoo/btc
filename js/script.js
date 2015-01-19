@@ -15,7 +15,7 @@ var app = {
       dataType: 'jsonp',
       success: function(data) {
         var json = $.parseJSON(data.query.results.body.p),
-            rate = data.EUR.last,
+            rate = json.EUR.last,
             oldRate = parseFloat($el.text()),
             suffix = '';
 
@@ -30,7 +30,7 @@ var app = {
           suffix = ' ' + suffix;
         }
   
-        document.title = rate + ' ' + data.EUR.symbol + suffix;
+        document.title = rate + ' ' + json.EUR.symbol + suffix;
         $el.text(rate);
       }
     });
