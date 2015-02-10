@@ -23,7 +23,7 @@ h1 {
 }
 
 h1:after {
-  content: '€';
+  content: attr(data-symbol);
   color: #ccc;
   padding-left: 0.2em;
 }
